@@ -2,17 +2,19 @@
 
 set -eu
 
-env
+# VERSION required to build uaa with a version number
+export VERSION=$(cat uaa-cli/version)
 
 curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 
-source=$PWD/uaa-cli/source.tar.gz
-mkdir -p $GOPATH/src/github.com/code.cloudfoundry.org/uaa-cli
-cd $GOPATH/src/github.com/code.cloudfoundry.org/uaa-cli
-tar xfz $source
+tar xfz uaa-cli/source.tar.gz
+
+mkdir -p $GOPATH/src/code.cloudfoundry.org/uaa-cli
+cp -r $PWD/cloudfoundry*/* $GOPATH/src/code.cloudfoundry.org/uaa-cli
+
+cd $GOPATH/src/code.cloudfoundry.org/uaa-cli
 dep ensure
-go build github.com/code.cloudfoundry.org/uaa-cli
+make build
+make install
 
-ls $GOPATH/bin
-
-uaa
+uaa version
