@@ -68,6 +68,18 @@ jobs:
           run:
             path: ./git/ci/scripts/go-build.sh
             args: []
+          params:
+            BINARY:       uaa
+            RELEASE_NAME: uaa-cli
+            RELEASE_ROOT: gh
+            STATIC_BINARY: false
+      - name: github
+        put: github
+        params:
+          name:   gh/name
+          tag:    gh/tag
+          body:   gh/notes.md
+          globs: [gh/artifacts/*]
 
       # on_failure:
       #   put: notify
@@ -103,20 +115,9 @@ resources:
   #   source:
   #     url: (( grab meta.slack.webhook ))
 
-  # - name: version
-  #   type: semver
-  #   source :
-  #     driver:            s3
-  #     key:               uaa-cli-version
-  #     bucket:            (( grab meta.aws.bucket ))
-  #     region_name:       (( grab meta.aws.region_name ))
-  #     access_key_id:     (( grab meta.aws.access_key ))
-  #     secret_access_key: (( grab meta.aws.secret_key ))
-  #     initial_version:   0.0.1
-
-  # - name: github
-  #   type: github-release
-  #   source:
-  #     user:         (( grab meta.github.owner ))
-  #     repository:   (( grab meta.github.repo ))
-  #     access_token: (( grab meta.github.access_token ))
+  - name: github
+    type: github-release
+    source:
+      user:         (( grab meta.github.owner ))
+      repository:   (( grab meta.github.repo ))
+      access_token: (( grab meta.github.access_token ))
