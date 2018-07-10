@@ -45,3 +45,8 @@ mv ${REPO_ROOT}/artifacts                    ${RELEASE_ROOT}/artifacts
 cat > ${RELEASE_ROOT}/notes.md <<-MARKDOWN
 See https://github.com/cloudfoundry-incubator/uaa-cli/releases/tag/${VERSION}
 MARKDOWN
+
+cat > ${RELEASE_ROOT}/notification <<EOF
+<!here> New ${RELEASE_NAME} v${VERSION} released!
+EOF
+
