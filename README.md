@@ -10,6 +10,7 @@ These GitHub releases/binaries are then fed into another pipeline as Homebrew an
 
 ```plain
 brew install starkandwayne/cf/uaa-cli
+uaa -h
 ```
 
 ## Debian/Ubuntu
@@ -22,5 +23,6 @@ echo "deb http://apt.starkandwayne.com stable main" | tee /etc/apt/sources.list.
 apt-get update
 
 apt-get install uaa-cli
+uaa -h
 ```
 
