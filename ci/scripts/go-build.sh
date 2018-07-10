@@ -4,6 +4,8 @@ set -eu
 
 env
 
+curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+
 source=$PWD/uaa-cli/source.tar.gz
 mkdir -p $GOPATH/src/github.com/code.cloudfoundry.org/uaa-cli
 cd $GOPATH/src/github.com/code.cloudfoundry.org/uaa-cli

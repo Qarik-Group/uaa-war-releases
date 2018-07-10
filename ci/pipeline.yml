@@ -23,15 +23,15 @@ meta:
     private_key:  (( param "Please generate an SSH Deployment Key for this repo and specify it here" ))
     access_token: (( param "Please generate a Personal Access Token to be used for creating github releases (do you have a ci-bot?)" ))
 
-  slack:
-    webhook:       (( param "Please specify your Slack Incoming Webhook Integration URL" ))
-    success_moji:  ":airplane_departure:"
-    fail_moji:     ":airplane_arriving:"
-    upset_moji:    ":sad_panda:"
-    channel:       "#uaa"
-    username:      starkandwayne-ci
-    icon:          https://www.starkandwayne.com/assets/images/shield-blue-50x50.png
-    fail_url: '(( concat "<" meta.url "/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Concourse Failure! " meta.slack.upset_moji ">" ))'
+  # slack:
+  #   webhook:       (( param "Please specify your Slack Incoming Webhook Integration URL" ))
+  #   success_moji:  ":airplane_departure:"
+  #   fail_moji:     ":airplane_arriving:"
+  #   upset_moji:    ":sad_panda:"
+  #   channel:       "#uaa"
+  #   username:      starkandwayne-ci
+  #   icon:          https://www.starkandwayne.com/assets/images/shield-blue-50x50.png
+  #   fail_url: '(( concat "<" meta.url "/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Concourse Failure! " meta.slack.upset_moji ">" ))'
 
 groups:
   - name: (( grab meta.pipeline ))
@@ -69,19 +69,19 @@ jobs:
             path: ./git/ci/scripts/go-build.sh
             args: []
 
-      on_failure:
-        put: notify
-        params:
-          channel:  (( grab meta.slack.channel ))
-          username: (( grab meta.slack.username ))
-          icon_url: (( grab meta.slack.icon ))
-          text:    '(( concat meta.slack.fail_url " " meta.pipeline ": \"build\" job failed" ))'
+      # on_failure:
+      #   put: notify
+      #   params:
+      #     channel:  (( grab meta.slack.channel ))
+      #     username: (( grab meta.slack.username ))
+      #     icon_url: (( grab meta.slack.icon ))
+      #     text:    '(( concat meta.slack.fail_url " " meta.pipeline ": \"build\" job failed" ))'
 
-resource_types:
-  - name: slack-notification
-    type: docker-image
-    source:
-      repository: cfcommunity/slack-notification-resource
+# resource_types:
+#   - name: slack-notification
+#     type: docker-image
+#     source:
+#       repository: cfcommunity/slack-notification-resource
 
 resources:
   - name: git
@@ -98,10 +98,10 @@ resources:
       repository:   uaa-cli
       access_token: (( grab meta.github.access_token ))
 
-  - name: notify
-    type: slack-notification
-    source:
-      url: (( grab meta.slack.webhook ))
+  # - name: notify
+  #   type: slack-notification
+  #   source:
+  #     url: (( grab meta.slack.webhook ))
 
   # - name: version
   #   type: semver
