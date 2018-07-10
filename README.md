@@ -1,10 +1,10 @@
 # UAA CLI binaries
 
-Currently the https://github.com/cloudfoundry-incubator/uaa-cli does cut releases but does not include pre-built binaries.
+The fabulous new [`uaa` CLI](https://github.com/cloudfoundry-incubator/uaa-cli) project has started cutting releases, but does not produce its own pre-built binaries.
 
-This project fills that temporary gap. Each `uaa-cli` release becomes a https://github.com/starkandwayne/uaa-cli-releases/releases release with MacOS/Darwin and Linux binaries.
+This project fills a temporary gap. Each upstream `uaa-cli` release becomes a pair of MacOS/Darwin and Linux binaries available at https://github.com/starkandwayne/uaa-cli-releases/releases.
 
-These binaries are then made available via another pipeline as Homebrew and Debian packages.
+These GitHub releases/binaries are then fed into another pipeline as Homebrew and Debian packages.
 
 ## MacOS/Homebrew
 
