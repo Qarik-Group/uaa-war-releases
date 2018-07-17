@@ -2,6 +2,8 @@
 
 set -eu
 
+java -version
+
 # VERSION required to build uaa with a version number
 VERSION=$(cat uaa/version)
 
