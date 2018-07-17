@@ -1,6 +1,6 @@
 ---
 meta:
-  name:    uaa-cli-releases
+  name:    uaa-war-releases
   target:  ohio-cf
   url:     https://ci2.starkandwayne.com
 

@@ -6,8 +6,8 @@ meta:
   pipeline: (( grab meta.name ))
 
   image:
-    name: starkandwayne/concourse-go
-    tag: "1.10"
+    name: starkandwayne/concourse-java
+    tag: "8"
 
   aws:
     bucket:     (( grab meta.pipeline ))
@@ -46,8 +46,8 @@ jobs:
     - do:
       - name: git
         get: git
-      - name: uaa-cli
-        get: uaa-cli
+      - name: uaa
+        get: uaa
         params: {include_source_tarball: true}
         trigger: true
       - name: build
@@ -66,7 +66,7 @@ jobs:
             - name: gh
             - name: notifications
           run:
-            path: ./git/ci/scripts/go-build.sh
+            path: ./git/ci/scripts/war-build.sh
             args: []
           params:
             BINARY:       uaa
@@ -103,11 +103,11 @@ resources:
       branch:      (( grab meta.github.branch ))
       private_key: (( grab meta.github.private_key ))
 
-  - name: uaa-cli
+  - name: uaa
     type: github-release
     source:
-      user:         cloudfoundry-incubator
-      repository:   uaa-cli
+      user:         cloudfoundry
+      repository:   uaa
       access_token: (( grab meta.github.access_token ))
 
   # - name: notify
