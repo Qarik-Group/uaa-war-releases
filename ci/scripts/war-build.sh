@@ -18,9 +18,9 @@ cp uaa/build/libs/cloudfoundry-identity-uaa*.war artifacts/
 popd
 popd
 
-echo "v${VERSION}"                         > ${RELEASE_ROOT}/tag
-echo "${RELEASE_NAME} v${VERSION}"         > ${RELEASE_ROOT}/name
-mv ${REPO_ROOT}/artifacts                    ${RELEASE_ROOT}/artifacts
+echo "v${VERSION}"                  > ${RELEASE_ROOT}/tag
+echo "${RELEASE_NAME} v${VERSION}"  > ${RELEASE_ROOT}/name
+mv uaa/cloudfoundry-uaa-*/artifacts   ${RELEASE_ROOT}/artifacts
 
 cat > ${RELEASE_ROOT}/notes.md <<-MARKDOWN
 See https://github.com/cloudfoundry/uaa/releases/tag/${VERSION}
