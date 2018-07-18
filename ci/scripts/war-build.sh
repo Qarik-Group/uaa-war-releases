@@ -7,10 +7,15 @@ java -version
 # VERSION required to build uaa with a version number
 VERSION=$(cat uaa/version)
 
-pushd ${REPO_ROOT:?required}
+pushd uaa
+tar xfz source.tar.gz
+pushd cloudfoundry-uaa-*/
+
 ./gradlew clean assemble
 mkdir artifacts
 cp uaa/build/libs/cloudfoundry-identity-uaa*.war artifacts/
+
+popd
 popd
 
 echo "v${VERSION}"                         > ${RELEASE_ROOT}/tag

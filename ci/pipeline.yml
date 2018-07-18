@@ -61,7 +61,7 @@ jobs:
               tag:        (( grab meta.image.tag ))
           inputs:
             - name: git
-            - name: uaa-cli
+            - name: uaa
           outputs:
             - name: gh
             - name: notifications
@@ -69,8 +69,7 @@ jobs:
             path: ./git/ci/scripts/war-build.sh
             args: []
           params:
-            BINARY:       uaa
-            RELEASE_NAME: uaa-cli
+            RELEASE_NAME: uaa
             RELEASE_ROOT: gh
             STATIC_BINARY: false
       - name: github
