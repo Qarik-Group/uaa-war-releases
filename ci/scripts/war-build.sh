@@ -11,7 +11,7 @@ pushd uaa
 tar xfz source.tar.gz
 pushd cloudfoundry-uaa-*/
 
-./gradlew clean assemble
+./gradlew :clean :assemble -Pversion=${VERSION}
 mkdir artifacts
 cp uaa/build/libs/cloudfoundry-identity-uaa*.war artifacts/
 
