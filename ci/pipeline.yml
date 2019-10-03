@@ -7,7 +7,7 @@ meta:
 
   image:
     name: starkandwayne/concourse-java
-    tag: "8"
+    tag: "11"
 
   aws:
     bucket:     (( grab meta.pipeline ))
